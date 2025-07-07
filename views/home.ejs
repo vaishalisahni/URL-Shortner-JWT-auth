@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #c3ec52 0%, #0ba29d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #0e3c50;
+            margin-bottom: 20px;
+        }
+
+        .result {
+            margin: 20px 0;
+            background: linear-gradient(90deg, #b7f8db, #50a7c2);
+            color: #00333a;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        a {
+            color: #002bff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            width: 100%;
+
+        }
+
+        input[type="text"] {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0ba29d;
+            outline: none;
+            box-shadow: 0 0 8px rgba(11, 162, 157, 0.3);
+        }
+
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #00c9ff 0%, #92fe9d 100%);
+            color: #003b47;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            opacity: 0.85;
+            transform: scale(1.03);
+        }
+
+        .analytics-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: 24px;
+        }
+
+        table {
+            width: 100%;
+            /* margin-top: 30px; */
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+        }
+
+        thead {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+        }
+
+        th,
+        td {
+            padding: 14px 16px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #e6f7ff;
+        }
+
+        #toggleBtn {
+            margin-top: 20px;
+            padding: 10px 18px;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        #toggleBtn:hover {
+            background: linear-gradient(to right, #0072ff, #00c6ff);
+            transform: scale(1.03);
+        }
+
+
+        @media (max-width: 768px) {
+
+            th,
+            td {
+                font-size: 13px;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔗 URL Shortener</h1>
+
+        <!-- Data coming from backend is in locals -->
+        <!-- show the generated url if available -->
+        <% if (locals.id) { %>
+        <div class="result">
+            ✅ Short URL:
+            <a href="/url/<%= id %>" target="_blank">
+                http://localhost:8001/url/<%= id %>
+            </a>
+        </div>
+        <% } %>
+
+        <!-- Input form -->
+        <form method="POST" action="/url">
+            <input type="text" name="url" placeholder="Paste your long URL here..." required />
+            <button type="submit">Generate Short URL</button>
+        </form>
+
+        <div class="analytics-wrapper">
+            <!-- Show/Hide Analytics Button -->
+            <button id="toggleBtn" onclick="toggleAnalytics()">📊 Show My Link Analytics</button>
+
+            <!-- Analytics Table - Hidden by default -->
+            <div id="analyticsTable" style="display: none; margin-top: 30px;">
+                <% if (locals.urls) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Short ID</th>
+                            <th>Redirect URL</th>
+                            <th>Clicks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% urls.forEach((url, index)=> { %>
+                        <tr>
+                            <td>
+                                <%= index + 1 %>
+                            </td>
+                            <td>
+                                <%= url.shortId %>
+                            </td>
+                            <td>
+                                <a href="<%= url.redirectUrl %>" target="_blank">
+                                    <%= url.redirectUrl.length> 40 ? url.redirectUrl.slice(0, 40) + "..." :
+                                                    url.redirectUrl %>
+                                </a>
+                            </td>
+                            <td>
+                                <%= url.visitHistory.length %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <% } %>
+            </div>
+        </div>
+
+        <script>
+            function toggleAnalytics() {
+                const table = document.getElementById("analyticsTable");
+                const button = document.getElementById("toggleBtn");
+
+                if (table.style.display === "none") {
+                    table.style.display = "block";
+                    button.textContent = "🙈 Hide Analytics";
+                } else {
+                    table.style.display = "none";
+                    button.textContent = "📊 Show My Link Analytics";
+                }
+            }
+        </script>
+
+</body>
+
+</html>
