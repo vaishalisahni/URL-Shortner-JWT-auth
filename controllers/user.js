@@ -27,9 +27,12 @@ async function handleUserLogin(req,res)
         });
     }
     const token = setUser(user);
+    // token sending through cookies 
     res.cookie("uid",token);
-    
     res.redirect("/");
+
+    // token sending through response (headers)
+    // return res.json({token});
 }
 
 module.exports={
