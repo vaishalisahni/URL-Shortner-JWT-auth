@@ -220,26 +220,26 @@
                             <th>Short ID</th>
                             <th>Redirect URL</th>
                             <th>Clicks</th>
+                            <% if (locals.isAdmin) { %>
+                            <th>Created By</th>
+                            <% } %>
                         </tr>
                     </thead>
                     <tbody>
                         <% urls.forEach((url, index)=> { %>
                         <tr>
-                            <td>
-                                <%= index + 1 %>
-                            </td>
-                            <td>
-                                <%= url.shortId %>
-                            </td>
+                            <td><%= index + 1 %></td>
+                            <td><%= url.shortId %></td>
                             <td>
                                 <a href="<%= url.redirectUrl %>" target="_blank">
-                                    <%= url.redirectUrl.length> 40 ? url.redirectUrl.slice(0, 40) + "..." :
-                                                    url.redirectUrl %>
+                                    <%= url.redirectUrl.length> 40 ? url.redirectUrl.slice(0, 40) + "..." : url.redirectUrl %>
                                 </a>
                             </td>
-                            <td>
-                                <%= url.visitHistory.length %>
-                            </td>
+                            <td><%= url.visitHistory.length %></td>
+
+                            <% if (locals.isAdmin) { %>
+                            <td><%= url.createdBy?.email || "Unknown" %></td>
+                            <% } %>
                         </tr>
                         <% }) %>
                     </tbody>
