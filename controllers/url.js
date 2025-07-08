@@ -23,6 +23,43 @@ async function handleGenerateNewShortURL(req, res) {
     // return res.status(201).json({ message: "Short URL created successfully", id: shortId });
 }
 
+// ******************************For Discord bot *****************************
+// async function handleGenerateNewShortURL(req, res) {
+//     const isFromDiscord = req.query.from === "discord";
+
+//     const body = req.body;
+//     if (!body.url) {
+//         return res.status(400).json({ message: "URL is required" });
+//     }
+
+//     const shortId = nanoid(8);
+
+//     const newEntry = {
+//         shortId: shortId,
+//         redirectUrl: body.url,
+//         visitHistory: []
+//     };
+
+//     if (!isFromDiscord) {
+//         // this line will throw if req.user is undefined
+//         newEntry.createdBy = req.user._id;
+//     }
+
+//     await URL.create(newEntry);
+
+//     // Send plain response if from Discord
+//     if (isFromDiscord) {
+//         return res.status(201).json({ message: "Short URL created", id: shortId });
+//     }
+
+//     const allUrls = await URL.find({ createdBy: req.user._id });
+
+//     return res.render("home", {
+//         id: shortId,
+//         urls: allUrls,
+//     });
+// }
+
 async function handleGetOriginalURL(req, res) {
     const shortId = req.params.shortId;
     const entry = await URL.findOneAndUpdate({

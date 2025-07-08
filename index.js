@@ -33,6 +33,7 @@ app.use(cookieParser());
 app.use(checkForAuthentication);
 
 app.use("/url",restrictTo(["NORMAL","ADMIN"]) ,urlRoute);
+// app.use("/url",urlRoute); //************for discord bot *************************
 app.use("/user",userRoute);
 app.use("/", staticRoute);
 
