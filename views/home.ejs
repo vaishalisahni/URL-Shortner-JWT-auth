@@ -1,268 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
     <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", "Segoe UI", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #ffe3f1, #ffd6ec);
+        background-size: 400% 400%;
+        animation: flow 10s ease infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 40px 20px;
+      }
+
+      @keyframes flow {
+        0% {
+          background-position: 0% 50%;
         }
 
-        body {
-            background: linear-gradient(135deg, #c3ec52 0%, #0ba29d 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 40px 20px;
+        50% {
+          background-position: 100% 50%;
         }
 
-        .container {
-            background: linear-gradient(135deg, #ffffff, #f9f9f9);
-            padding: 40px 30px;
-            border-radius: 16px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 900px;
-            text-align: center;
-            animation: fadeIn 0.8s ease-in-out;
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 12px 30px rgba(255, 105, 180, 0.2);
+        width: 100%;
+        max-width: 900px;
+        text-align: center;
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+      h1 {
+        font-size: 2.5rem;
+        color: #d63384;
+        margin-bottom: 20px;
+      }
+
+      .result {
+        margin: 20px 0;
+        background: linear-gradient(90deg, #fbc2eb, #a6c1ee);
+        color: #6d326d;
+        padding: 14px 20px;
+        border-radius: 12px;
+        font-weight: 500;
+        box-shadow: 0 4px 12px rgba(255, 182, 193, 0.3);
+      }
+
+      a {
+        color: #e91e63;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      input[type="text"] {
+        flex: 1;
+        min-width: 250px;
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: 1.5px solid #f8c1d1;
+        font-size: 16px;
+        background-color: #fff0f6;
+        transition: 0.3s ease;
+      }
+
+      input:focus {
+        border-color: #ff69b4;
+        box-shadow: 0 0 8px rgba(255, 105, 180, 0.25);
+        background-color: #fff8fc;
+      }
+
+      button {
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #ff6fd8 0%, #fdb99b 100%);
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s ease;
+        box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+      }
+
+      button:hover {
+        transform: scale(1.03);
+        box-shadow: 0 6px 14px rgba(255, 105, 180, 0.3);
+      }
+
+      .analytics-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 24px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 0 12px rgba(255, 105, 180, 0.1);
+      }
+
+      thead {
+        background: linear-gradient(to right, #f478c9, #c56cf0);
+        color: white;
+      }
+
+      th,
+      td {
+        padding: 14px 16px;
+        text-align: center;
+        font-size: 15px;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fff5fa;
+      }
+
+      tbody tr:hover {
+        background-color: #fce7f3;
+      }
+
+      #toggleBtn {
+        padding: 10px 18px;
+        background: linear-gradient(to right, #f093fb, #f5576c);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      #toggleBtn:hover {
+        transform: scale(1.03);
+        opacity: 0.9;
+      }
+
+      @media (max-width: 768px) {
+        th,
+        td {
+          font-size: 13px;
+          padding: 10px;
         }
 
         h1 {
-            font-size: 2.5rem;
-            color: #0e3c50;
-            margin-bottom: 20px;
+          font-size: 1.8rem;
         }
+      }
+      .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        border-radius: 12px;
+      }
 
-        .result {
-            margin: 20px 0;
-            background: linear-gradient(90deg, #b7f8db, #50a7c2);
-            color: #00333a;
-            padding: 14px 20px;
-            border-radius: 12px;
-            font-weight: 500;
-        }
+      td,
+      th {
+        white-space: nowrap;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
-        a {
-            color: #002bff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        form {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            width: 100%;
-
-        }
-
-        input[type="text"] {
-            flex: 1;
-            min-width: 250px;
-            padding: 12px 16px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            transition: 0.3s ease;
-        }
-
-        input[type="text"]:focus {
-            border-color: #0ba29d;
-            outline: none;
-            box-shadow: 0 0 8px rgba(11, 162, 157, 0.3);
-        }
-
-        button {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #00c9ff 0%, #92fe9d 100%);
-            color: #003b47;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-
-        button:hover {
-            opacity: 0.85;
-            transform: scale(1.03);
-        }
-
-        .analytics-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            gap: 24px;
-        }
-
-        table {
-            width: 100%;
-            /* margin-top: 30px; */
-            border-collapse: collapse;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
-        }
-
-        thead {
-            background: linear-gradient(to right, #667eea, #764ba2);
-            color: white;
-        }
-
-        th,
-        td {
-            padding: 14px 16px;
-            text-align: center;
-            font-size: 15px;
-        }
-
-        tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tbody tr:hover {
-            background-color: #e6f7ff;
-        }
-
-        #toggleBtn {
-            margin-top: 20px;
-            padding: 10px 18px;
-            background: linear-gradient(to right, #00c6ff, #0072ff);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-
-        #toggleBtn:hover {
-            background: linear-gradient(to right, #0072ff, #00c6ff);
-            transform: scale(1.03);
-        }
-
-
-        @media (max-width: 768px) {
-
-            th,
-            td {
-                font-size: 13px;
-                padding: 10px;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-        }
+      td a {
+        display: inline-block;
+        max-width: 180px;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        white-space: nowrap;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <h1>🔗 URL Shortener</h1>
+      <h1>🌸 URL Shortener</h1>
 
-        <!-- Data coming from backend is in locals -->
-        <!-- show the generated url if available -->
-        <% if (locals.id) { %>
-        <div class="result">
-            ✅ Short URL:
-            <a href="/url/<%= id %>" target="_blank">
-                http://localhost:8001/url/<%= id %>
-            </a>
-        </div>
-        <% } %>
+      <% if (locals.id) { %>
+      <div class="result">
+        ✅ Short URL:
+        <a href="/url/<%= id %>" target="_blank">
+          http://localhost:8001/url/<%= id %>
+        </a>
+      </div>
+      <% } %>
 
-        <!-- Input form -->
-        <form method="POST" action="/url">
-            <input type="text" name="url" placeholder="Paste your long URL here..." required />
-            <button type="submit">Generate Short URL</button>
-        </form>
+      <form method="POST" action="/url">
+        <input
+          type="text"
+          name="url"
+          placeholder="Paste your long URL here..."
+          required
+        />
+        <button type="submit">Generate Short URL</button>
+      </form>
 
-        <div class="analytics-wrapper">
-            <!-- Show/Hide Analytics Button -->
-            <button id="toggleBtn" onclick="toggleAnalytics()">📊 Show My Link Analytics</button>
+      <div class="analytics-wrapper">
+        <button id="toggleBtn" onclick="toggleAnalytics()">
+          📊 Show My Link Analytics
+        </button>
 
-            <!-- Analytics Table - Hidden by default -->
-            <div id="analyticsTable" style="display: none; margin-top: 30px;">
-                <% if (locals.urls) { %>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>S.No</th>
-                            <th>Short ID</th>
-                            <th>Redirect URL</th>
-                            <th>Clicks</th>
-                            <% if (locals.isAdmin) { %>
-                            <th>Created By</th>
-                            <% } %>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% urls.forEach((url, index)=> { %>
-                        <tr>
-                            <td><%= index + 1 %></td>
-                            <td><%= url.shortId %></td>
-                            <td>
-                                <a href="<%= url.redirectUrl %>" target="_blank">
-                                    <%= url.redirectUrl.length> 40 ? url.redirectUrl.slice(0, 40) + "..." : url.redirectUrl %>
-                                </a>
-                            </td>
-                            <td><%= url.visitHistory.length %></td>
-
-                            <% if (locals.isAdmin) { %>
-                            <td><%= url.createdBy?.email || "Unknown" %></td>
-                            <% } %>
-                        </tr>
-                        <% }) %>
-                    </tbody>
-                </table>
+        <div id="analyticsTable" style="display: none; margin-top: 30px">
+          <% if (locals.urls) { %>
+          <div class="table-wrapper">
+            <table>
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Short Id</th>
+                <th>Short URL</th>
+                <th>Redirect URL</th>
+                <th>Clicks</th>
+                <% if (locals.isAdmin) { %>
+                <th>Created By</th>
                 <% } %>
-            </div>
+              </tr>
+            </thead>
+            <tbody>
+              <% urls.forEach((url, index)=> { %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= url.shortId %></td>
+                <td>
+                  <a href="/url/<%= url.shortId %>" target="_blank">
+                    http://localhost:8001/url/<%= url.shortId %>
+                  </a>
+                </td>
+
+                <td>
+                  <a href="<%= url.redirectUrl %>" target="_blank">
+                    <%= url.redirectUrl.length> 40 ? url.redirectUrl.slice(0,
+                    40) + "..." : url.redirectUrl %>
+                  </a>
+                </td>
+                <td><%= url.visitHistory.length %></td>
+                <% if (locals.isAdmin) { %>
+                <td><%= url.createdBy?.email || "Unknown" %></td>
+                <% } %>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+          </div>
+          <% } %>
         </div>
+      </div>
+    </div>
 
-        <script>
-            function toggleAnalytics() {
-                const table = document.getElementById("analyticsTable");
-                const button = document.getElementById("toggleBtn");
+    <script>
+      function toggleAnalytics() {
+        const table = document.getElementById("analyticsTable");
+        const button = document.getElementById("toggleBtn");
 
-                if (table.style.display === "none") {
-                    table.style.display = "block";
-                    button.textContent = "🙈 Hide Analytics";
-                } else {
-                    table.style.display = "none";
-                    button.textContent = "📊 Show My Link Analytics";
-                }
-            }
-        </script>
-
-</body>
-
+        if (table.style.display === "none") {
+          table.style.display = "block";
+          button.textContent = "🙈 Hide Analytics";
+        } else {
+          table.style.display = "none";
+          button.textContent = "📊 Show My Link Analytics";
+        }
+      }
+    </script>
+  </body>
 </html>

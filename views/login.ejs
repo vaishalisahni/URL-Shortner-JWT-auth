@@ -1,117 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background: linear-gradient(135deg, #f9f9f9, #c3ec52, #0ba29d);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .login-container {
-      background-color: #fff;
-      padding: 40px 30px;
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      animation: fadeIn 0.6s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", "Segoe UI", sans-serif;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      body {
+        background: linear-gradient(135deg, #ffd6ec, #ffe3f1, #fbc2eb, #a6c1ee);
+        background-size: 400% 400%;
+        animation: gradientFlow 10s ease infinite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
       }
-    }
 
-    h1 {
-      text-align: center;
-      color: #0e3c50;
-      font-size: 2rem;
-    }
+      @keyframes gradientFlow {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
 
-    label {
-      font-weight: bold;
-      color: #333;
-    }
+      .login-container {
+        background-color: #fff;
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        animation: fadeIn 0.6s ease-in-out;
+      }
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-    input[type="email"],
-    input[type="password"] {
-      padding: 12px 14px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 15px;
-      width: 100%;
-      transition: border 0.3s;
-    }
+      h1 {
+        text-align: center;
+        color: #e91e63;
+        font-size: 2.2rem;
+      }
 
-    input:focus {
-      outline: none;
-      border-color: #0ba29d;
-      box-shadow: 0 0 6px rgba(11, 162, 157, 0.2);
-    }
+      label {
+        font-weight: 500;
+        color: #333;
+      }
 
-    button {
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #00c9ff 0%, #92fe9d 100%);
-      color: #003b47;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
 
-    button:hover {
-      transform: scale(1.03);
-      opacity: 0.9;
-    }
-  </style>
-</head>
+      input[type="email"],
+      input[type="password"] {
+        padding: 12px 14px;
+        border: 1.5px solid #f8c1d1;
+        border-radius: 12px;
+        font-size: 15px;
+        background-color: #fff0f6;
+        transition: 0.3s ease;
+      }
 
-<body>
-  <div class="login-container">
-    <h1>🔐 Login</h1>
-    <form action="/user/login" method="post">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" required name="email" placeholder="you@example.com" />
-      </div>
+      input:focus {
+        outline: none;
+        border-color: #ff69b4;
+        box-shadow: 0 0 8px rgba(255, 105, 180, 0.3);
+        background-color: #fff8fc;
+      }
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" required name="password" placeholder="password" />
-      </div>
+      button {
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #ff6fd8 0%, #fdb99b 100%);
+        color: #fff;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+      }
 
-      <button type="submit">Login</button>
-    </form>
-  </div>
-</body>
+      button:hover {
+        transform: scale(1.03);
+        box-shadow: 0 6px 14px rgba(255, 105, 180, 0.3);
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .toggle-text {
+        text-align: center;
+        font-size: 14px;
+        margin-top: -10px;
+        color: #555;
+      }
+
+      .toggle-text a {
+        color: #e91e63;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .toggle-text a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="login-container">
+      <h1>🌸 Login</h1>
+      <form action="/user/login" method="post">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            required
+            name="email"
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            required
+            name="password"
+            placeholder="password"
+          />
+        </div>
+
+        <button type="submit">Login</button>
+      </form>
+      <p class="toggle-text">
+        Don't have an account?
+        <a href="/signup">Sign up</a>
+      </p>
+    </div>
+  </body>
 </html>
